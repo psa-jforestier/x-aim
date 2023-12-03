@@ -1,0 +1,35 @@
+object SplashForm: TSplashForm
+  Left = 337
+  Height = 36
+  Top = 127
+  Width = 197
+  BorderStyle = bsNone
+  Caption = 'SplashForm'
+  ClientHeight = 36
+  ClientWidth = 197
+  Color = clAqua
+  OnCreate = FormCreate
+  Position = poDesktopCenter
+  LCLVersion = '2.2.6.0'
+  object Label1: TLabel
+    Left = 0
+    Height = 15
+    Top = 16
+    Width = 189
+    Caption = 'Press F1 on the crosshair to get help'
+    ParentColor = False
+    OnClick = Label1Click
+  end
+  object Label2: TLabel
+    Left = 72
+    Height = 15
+    Top = 0
+    Width = 58
+    Caption = 'X-AIM v1.0'
+    ParentColor = False
+    OnClick = Label2Click
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+  end
+end
