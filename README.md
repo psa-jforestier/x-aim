@@ -1,5 +1,7 @@
 # Welcome to X-AIM !
 
+## The open-source crosshair program en enhance your best Windows FPS games
+
 The purpose of this program is to enhance the aiming and targeting experience in first-person shooter (FPS) games.
 It provides a crosshair overlay on the screen, which helps players to precisely aim at their targets and improve their accuracy.
 By using this application, players can have better control over their shots, leading to more successful hits and potentially increasing their overall performance in the game.
