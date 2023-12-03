@@ -14,10 +14,13 @@ You can move the cross hair by dragging in with the mous, or by using SHIFT + ar
 To exit X-AIM, press ESCAPE or ALT+F4
 Press F1 key to display an help screen.
 
+Start your best FPS game, let's say Fortnite for example. Set the game to be windowed mode, and use the ALT+TAB or Windows key to birng X-AIM to the front.
+
 Note that crosshairs are simple PNG file. You can design your own if you want. Maximum size is 32x32, 8bits color depths. Pure white color will be transparent. Image is streteched to 32x32.
 
 # LICENCE
 
-This program and its source code are copyleft.
+This program and its source code are copyleft https://unlicense.org.
 https://github.com/psa-jforestier/x-aim
+Pleasently bring you by JayRom95.fr
 

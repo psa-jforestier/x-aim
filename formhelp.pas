@@ -14,7 +14,7 @@ type
   THelpForm = class(TForm)
     MemoHelp: TMemo;
     procedure FormCreate(Sender: TObject);
-    procedure MemoHelpChange(Sender: TObject);
+
   private
 
   public
@@ -30,10 +30,7 @@ implementation
 
 { THelpForm }
 
-procedure THelpForm.MemoHelpChange(Sender: TObject);
-begin
 
-end;
 
 procedure THelpForm.FormCreate(Sender: TObject);
 begin
