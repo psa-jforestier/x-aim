@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, LMessages,
-  LCLType, Menus, LazLogger, Windows, Types, formhelp, formsplash;
+  LCLType, Menus, LazLogger, Windows, Types, formhelp, formsplash, IniFiles;
 
 type
 
@@ -30,9 +30,6 @@ type
       WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
     procedure FormShow(Sender: TObject);
     procedure FormWindowStateChange(Sender: TObject);
-    procedure Shape1MouseEnter(Sender: TObject);
-    procedure Shape1MouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
   private
          procedure LMNCHitTest(var Msg: TLMNCHitTest) ; message LM_NCHitTest;
 
@@ -40,6 +37,8 @@ type
         procedure NextReticule();
         procedure PrevReticule();
   end;
+const
+  INIFILE = 'xaim.ini';
 
 var
   Form1: TForm1;
@@ -66,22 +65,7 @@ begin
   Image1.Picture.LoadFromFile(Reticles[ReticleIndex])
 end;
 
-procedure TForm1.Shape1MouseEnter(Sender: TObject);
-begin
-  DebugLn('');
-end;
 
-
-
-procedure TForm1.Shape1MouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-begin
-  if Button = mbRight then
-  begin
-       PopupMenu.PopUp;
-
-  end;
-end;
 
 
 
@@ -92,7 +76,12 @@ begin
 
 end;
 
+
+
 procedure TForm1.FormCreate(Sender: TObject);
+var
+  settings : TIniFile;
+  inivalue : integer;
 begin
    LazLogger.GetDebugLogger.CloseLogFileBetweenWrites:=True;
 
@@ -109,13 +98,22 @@ begin
    // load reticle
 
    Image1.Picture.LoadFromFile(Reticles[0]);
+
+
 end;
 
 procedure TForm1.FormHide(Sender: TObject);
+var
+  settings : TIniFile;
 begin
   inherited;
   DebugLn('FormHide');
-
+  // A good place to write position
+  settings := TIniFile.Create(INIFILE);
+  settings.WriteInteger('Main', 'Top', Form1.Top);
+  settings.WriteInteger('Main', 'Left', Form1.Left);
+  settings.WriteInteger('Main', 'Reticle', ReticleIndex);
+  settings.Free;
 end;
 
 procedure TForm1.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -177,6 +175,8 @@ begin
 end;
 
 procedure TForm1.FormShow(Sender: TObject);
+var
+  settings : TIniFile;
 begin
     {make the form transparent - works only with Windows operating systems}
   SetWindowLong(Handle, GWL_EXSTYLE, GetWindowLong(Handle, GWL_EXSTYLE) or
@@ -184,6 +184,21 @@ begin
   SetLayeredWindowAttributes(Handle, clWhite, 255, LWA_COLORKEY);
   DebugLn('FormShow !');
   SplashForm.show;
+  // Load settings
+   settings := TIniFile.Create(INIFILE);
+   if (settings.SectionExists('Main')) then
+   begin
+     Form1.Position:=poDefault;
+     Form1.Top := settings.ReadInteger('Main', 'Top', -1);
+     Form1.Left:= settings.ReadInteger('Main', 'Left', -1);
+     ReticleIndex := settings.ReadInteger('Main', 'Reticle', 0);
+     Image1.Picture.LoadFromFile(Reticles[ReticleIndex]);
+   end
+   else
+   begin
+     Form1.Position := poScreenCenter;
+   end;
+   settings.Free;
 end;
 
 
