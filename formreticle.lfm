@@ -16,6 +16,7 @@ object Form1: TForm1
   OnCreate = FormCreate
   OnHide = FormHide
   OnKeyUp = FormKeyUp
+  OnMouseDown = FormMouseDown
   OnMouseEnter = FormMouseEnter
   OnMouseLeave = FormMouseLeave
   OnMouseWheel = FormMouseWheel
@@ -31,6 +32,7 @@ object Form1: TForm1
     Width = 160
     Align = alClient
     Center = True
+    OnMouseDown = Image1MouseDown
     Picture.Data = {
       1754506F727461626C654E6574776F726B47726170686963B200000089504E47
       0D0A1A0A0000000D4948445200000010000000100403000000EDDDE252000000

@@ -24,12 +24,16 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
     procedure FormMouseEnter(Sender: TObject);
     procedure FormMouseLeave(Sender: TObject);
     procedure FormMouseWheel(Sender: TObject; Shift: TShiftState;
       WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
     procedure FormShow(Sender: TObject);
     procedure FormWindowStateChange(Sender: TObject);
+    procedure Image1MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
          procedure LMNCHitTest(var Msg: TLMNCHitTest) ; message LM_NCHitTest;
 
@@ -145,6 +149,12 @@ begin
   end;
 end;
 
+procedure TForm1.FormMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  DebugLn('FormMouseDown');
+end;
+
 procedure TForm1.FormMouseEnter(Sender: TObject);
 begin
    inherited;
@@ -209,6 +219,14 @@ procedure TForm1.FormWindowStateChange(Sender: TObject);
 begin
   DebugLn('FormWindowStateChange');
 end;
+
+procedure TForm1.Image1MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  DebugLn('Image1MouseDown');
+
+end;
+
 
 procedure TForm1.LMNCHitTest(var Msg: TLMNCHitTest);
 begin

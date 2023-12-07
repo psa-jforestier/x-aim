@@ -25,7 +25,7 @@ object SplashForm: TSplashForm
     Height = 15
     Top = 0
     Width = 58
-    Caption = 'X-AIM v1.0'
+    Caption = 'X-AIM v1.1'
     ParentColor = False
     OnClick = Label2Click
   end
